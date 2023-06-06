@@ -1,0 +1,28 @@
+<p>hero-detail works!</p>
+
+<p [ngClass]="hero?.name === 'Voltes Man' ? 'voltes' : ''">
+  {{
+    hero?.name?.includes("Voltes")
+      ? "I love Voltes Series"
+      : "nothing no voltes"
+  }}
+</p>
+
+<div *ngIf="hero">
+  <h2>{{ hero.name | uppercase }}</h2>
+  <div>
+    <span>id: {{ hero.id }}</span>
+  </div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input
+      class="input-font"
+      type="text"
+      id="hero-name"
+      [(ngModel)]="hero.name"
+      placeholder="hero-name"
+    />
+  </div>
+
+  <button type="button" (click)="goBack()">go back</button>
+</div>
