@@ -9,6 +9,7 @@ export class MessageService {
   messages: string[] = [];
 
   add(message: string) {
+    debugger;
     this.messages.push(message);
   }
 

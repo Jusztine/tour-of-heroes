@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "cypress": "^12.13.0",
+    "cypress": "^8.6.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -36,6 +36,7 @@
     "@storybook/angular": "^7.0.18",
     "@storybook/blocks": "^7.0.18",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/cypress-cucumber-preprocessor": "^4.0.1",
     "@types/jasmine": "~4.3.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "jasmine-core": "~4.6.0",
@@ -48,5 +49,8 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.0.18",
     "typescript": "~5.0.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }

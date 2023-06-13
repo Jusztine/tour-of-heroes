@@ -1,5 +1,7 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { DashboardComponent } from './dashboard.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ViewChildren } from '@angular/core';
 
 const meta: Meta<DashboardComponent> = {
   title: 'Heroes/Dashboard',

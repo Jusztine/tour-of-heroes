@@ -254,7 +254,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<h1>{{ title }}</h1>\n<nav>\n  <a routerLink=\"/dashboard\">Dashboard</a>\n  <a routerLink=\"/heroes\">Heroes</a>\n</nav>\n<router-outlet></router-outlet>\n<app-messages></app-messages>\n"
+            "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<h1 id=\"page-title\">{{ title }}</h1>\n<nav>\n  <a routerLink=\"/dashboard\">Dashboard</a>\n  <a routerLink=\"/heroes\">Heroes</a>\n</nav>\n<router-outlet></router-outlet>\n<app-messages></app-messages>\n"
         },
         {
             "name": "ButtonComponent",
@@ -570,7 +570,7 @@
         },
         {
             "name": "HeroDetailComponent",
-            "id": "component-HeroDetailComponent-ff22f9f6617ce3c7857f492e389e8504e00171bdfabc93df74ae77265166564b6b19a4074d3a7b121bb74219ed7b510c6fa937c069f439a4b40593ad6d8b3c0b",
+            "id": "component-HeroDetailComponent-61821beabe5be799bd3cf56387f86fb7760fab3666fd04886c6f167707e9351ac626a78f813a6f521ff6c11cb2b347a879881eddb76c3c0f55c287f73c208f06",
             "file": "src/app/hero-detail/hero-detail.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -641,7 +641,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Hero } from '../interface';\nimport { ActivatedRoute } from '@angular/router';\nimport { HeroService } from '../services/hero/hero.service';\nimport { Location } from '@angular/common';\n\n@Component({\n  selector: 'app-hero-detail',\n  templateUrl: './hero-detail.component.html',\n  styleUrls: ['./hero-detail.component.css'],\n})\nexport class HeroDetailComponent implements OnInit {\n  hero: Hero | undefined;\n\n  constructor(\n    private route: ActivatedRoute,\n    private location: Location,\n    private heroService: HeroService\n  ) {}\n\n  ngOnInit(): void {\n    this.getHero();\n  }\n\n  getHero(): void {\n    const id = Number(this.route.snapshot.paramMap.get('heroId'));\n    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));\n    console.log(id);\n  }\n\n  goBack(): void {\n    this.location.back();\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, OnInit, Output } from '@angular/core';\nimport { Hero } from '../interface';\nimport { ActivatedRoute } from '@angular/router';\nimport { HeroService } from '../services/hero/hero.service';\nimport { Location } from '@angular/common';\n\n@Component({\n  selector: 'app-hero-detail',\n  templateUrl: './hero-detail.component.html',\n  styleUrls: ['./hero-detail.component.css'],\n})\nexport class HeroDetailComponent implements OnInit {\n  hero: Hero | undefined;\n\n  constructor(\n    private route: ActivatedRoute,\n    private location: Location,\n    private heroService: HeroService\n  ) {}\n\n  ngOnInit(): void {\n    this.getHero();\n  }\n\n  getHero(): void {\n    const id = Number(this.route.snapshot.paramMap.get('heroId'));\n    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));\n    console.log(id);\n  }\n\n  goBack(): void {\n    this.location.back();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -709,7 +709,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<p>hero-detail works!</p>\n\n<p [ngClass]=\"hero?.name === 'Voltes Man' ? 'voltes' : ''\">\n  {{\n    hero?.name?.includes(\"Voltes\")\n      ? \"I love Voltes Series\"\n      : \"nothing no voltes\"\n  }}\n</p>\n\n<div *ngIf=\"hero\">\n  <h2>{{ hero.name | uppercase }}</h2>\n  <div>\n    <span>id: {{ hero.id }}</span>\n  </div>\n  <div>\n    <label for=\"hero-name\">Hero name: </label>\n    <input\n      class=\"input-font\"\n      type=\"text\"\n      id=\"hero-name\"\n      [(ngModel)]=\"hero.name\"\n      placeholder=\"hero-name\"\n    />\n  </div>\n\n  <button type=\"button\" (click)=\"goBack()\">go back</button>\n</div>\n"
+            "templateData": "<p>hero-detail works!</p>\n\n<p [ngClass]=\"hero?.name === 'Voltes Man' ? 'voltes' : ''\">\n  {{\n    hero?.name?.includes(\"Voltes\")\n      ? \"I love Voltes Series\"\n      : \"nothing no voltes\"\n  }}\n</p>\n\n<div *ngIf=\"hero\">\n  <h2 id=\"hero-name-upper\">{{ hero.name | uppercase }}</h2>\n  <div>\n    <span id=\"hero-id\">id: {{ hero.id }}</span>\n  </div>\n  <div>\n    <label for=\"hero-name\">Hero name: </label>\n    <input\n      class=\"input-font\"\n      type=\"text\"\n      id=\"hero-name\"\n      [(ngModel)]=\"hero.name\"\n      placeholder=\"hero-name\"\n      data-cy=\"hero-name-input\"\n    />\n  </div>\n\n  <button type=\"button\" (click)=\"goBack()\">go back</button>\n</div>\n"
         },
         {
             "name": "HeroesComponent",
@@ -810,7 +810,7 @@
                     }
                 ]
             },
-            "templateData": "<p>This is heroes List Component</p>\n\n<h2>My Heroes</h2>\n<ul class=\"heroes\">\n  <li *ngFor=\"let hero of heroes\">\n    <!-- add a router link -->\n    <a routerLink=\"/detail/{{ hero.id }}\">\n      <span class=\"badge\">{{ hero.id }}</span>\n      {{ hero.name }}\n    </a>\n  </li>\n</ul>\n"
+            "templateData": "<p>This is heroes List Component</p>\n\n<h2>My Heroes</h2>\n<ul class=\"heroes\">\n  <li *ngFor=\"let hero of heroes\">\n    <!-- add a router link -->\n    <a routerLink=\"/detail/{{ hero.id }}\" id=\"hero-link\">\n      <span class=\"badge\">{{ hero.id }}</span>\n      {{ hero.name }}\n    </a>\n  </li>\n</ul>\n"
         },
         {
             "name": "MessagesComponent",
@@ -1089,6 +1089,26 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "Dashboard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/dashboard/dashboard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "HeroDetails",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/hero-detail/hero-details.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
                 "name": "heroes",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1102,7 +1122,7 @@
                 "name": "Heroes",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/heroes/heroes.story.ts",
+                "file": "src/app/heroes/heroes.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -1159,6 +1179,16 @@
                 "defaultValue": "{\n  render: (args: Page) => ({\n    props: args,\n  }),\n}"
             },
             {
+                "name": "Messages",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/messages/messages.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1202,11 +1232,41 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/heroes/heroes.story.ts",
+                "file": "src/app/dashboard/dashboard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<DashboardComponent>",
+                "defaultValue": "{\n  title: 'Heroes/Dashboard',\n  component: DashboardComponent,\n  tags: ['autodocs'],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/hero-detail/hero-details.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<HeroDetailComponent>",
+                "defaultValue": "{\n  title: 'Heroes/Hero Detail',\n  component: HeroDetailComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [DashboardComponent, HeroesComponent],\n      // if the component has injected services,\n      // need to import things usually\n      imports: [CommonModule, RouterTestingModule],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/heroes/heroes.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<HeroesComponent>",
-                "defaultValue": "{\n  title: 'Heroes/Heroes',\n  component: HeroesComponent,\n  tags: ['autodocs'],\n}"
+                "defaultValue": "{\n  title: 'Heroes/Heroes',\n  component: HeroesComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [],\n    }),\n  ],\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/messages/messages.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<MessagesComponent>",
+                "defaultValue": "{\n  title: 'Heroes/Messages',\n  component: MessagesComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [],\n    }),\n  ],\n}"
             },
             {
                 "name": "preview",
@@ -1299,8 +1359,41 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<DashboardComponent>",
+                "file": "src/app/dashboard/dashboard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<HeroDetailComponent>",
+                "file": "src/app/hero-detail/hero-details.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<HeroesComponent>",
-                "file": "src/app/heroes/heroes.story.ts",
+                "file": "src/app/heroes/heroes.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MessagesComponent>",
+                "file": "src/app/messages/messages.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1331,6 +1424,50 @@
                     "defaultValue": "{\n  title: 'Heroes/NavBar',\n  component: AppComponent,\n  tags: ['autodocs'],\n}"
                 }
             ],
+            "src/app/dashboard/dashboard.stories.ts": [
+                {
+                    "name": "Dashboard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/dashboard/dashboard.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/dashboard/dashboard.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<DashboardComponent>",
+                    "defaultValue": "{\n  title: 'Heroes/Dashboard',\n  component: DashboardComponent,\n  tags: ['autodocs'],\n}"
+                }
+            ],
+            "src/app/hero-detail/hero-details.stories.ts": [
+                {
+                    "name": "HeroDetails",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/hero-detail/hero-details.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/hero-detail/hero-details.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<HeroDetailComponent>",
+                    "defaultValue": "{\n  title: 'Heroes/Hero Detail',\n  component: HeroDetailComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [DashboardComponent, HeroesComponent],\n      // if the component has injected services,\n      // need to import things usually\n      imports: [CommonModule, RouterTestingModule],\n    }),\n  ],\n}"
+                }
+            ],
             "src/app/data-heroes.ts": [
                 {
                     "name": "heroes",
@@ -1343,12 +1480,12 @@
                     "defaultValue": "[\n  { id: 1, name: 'Electras' },\n  { id: 2, name: 'Voltes Man' },\n  { id: 10, name: 'Dino' },\n  { id: 11, name: 'Voltes Woman' },\n  { id: 12, name: 'Spider Man' },\n  { id: 13, name: 'WaspMan' },\n  { id: 14, name: 'AntMan' },\n  { id: 15, name: 'Dr. Z' },\n  { id: 16, name: 'Wolverine' },\n  { id: 17, name: 'Power Rangers' },\n  { id: 18, name: 'Blue' },\n  { id: 19, name: 'Red' },\n]"
                 }
             ],
-            "src/app/heroes/heroes.story.ts": [
+            "src/app/heroes/heroes.stories.ts": [
                 {
                     "name": "Heroes",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/heroes/heroes.story.ts",
+                    "file": "src/app/heroes/heroes.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -1358,11 +1495,11 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/heroes/heroes.story.ts",
+                    "file": "src/app/heroes/heroes.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<HeroesComponent>",
-                    "defaultValue": "{\n  title: 'Heroes/Heroes',\n  component: HeroesComponent,\n  tags: ['autodocs'],\n}"
+                    "defaultValue": "{\n  title: 'Heroes/Heroes',\n  component: HeroesComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [],\n    }),\n  ],\n}"
                 }
             ],
             "src/stories/Button.stories.ts": [
@@ -1481,6 +1618,28 @@
                     "defaultValue": "{\n  title: 'Example/Page',\n  component: Page,\n  parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/angular/configure/story-layout\n    layout: 'fullscreen',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [Button, Header],\n      imports: [CommonModule],\n    }),\n  ],\n}"
                 }
             ],
+            "src/app/messages/messages.stories.ts": [
+                {
+                    "name": "Messages",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/messages/messages.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/messages/messages.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MessagesComponent>",
+                    "defaultValue": "{\n  title: 'Heroes/Messages',\n  component: MessagesComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [],\n    }),\n  ],\n}"
+                }
+            ],
             ".storybook/preview.ts": [
                 {
                     "name": "preview",
@@ -1549,13 +1708,52 @@
                     "kind": 180
                 }
             ],
-            "src/app/heroes/heroes.story.ts": [
+            "src/app/dashboard/dashboard.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DashboardComponent>",
+                    "file": "src/app/dashboard/dashboard.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/hero-detail/hero-details.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<HeroDetailComponent>",
+                    "file": "src/app/hero-detail/hero-details.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/heroes/heroes.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<HeroesComponent>",
-                    "file": "src/app/heroes/heroes.story.ts",
+                    "file": "src/app/heroes/heroes.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/messages/messages.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MessagesComponent>",
+                    "file": "src/app/messages/messages.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1649,6 +1847,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/dashboard/dashboard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Dashboard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/dashboard/dashboard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/data-heroes.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1668,6 +1886,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/hero-detail/hero-details.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "HeroDetails",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/hero-detail/hero-details.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/heroes/heroes.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1677,7 +1915,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/heroes/heroes.story.ts",
+                "filePath": "src/app/heroes/heroes.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1687,7 +1925,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/heroes/heroes.story.ts",
+                "filePath": "src/app/heroes/heroes.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -1712,6 +1950,26 @@
                 "name": "MessagesComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/messages/messages.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Messages",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/messages/messages.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
